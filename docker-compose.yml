@@ -1,0 +1,20 @@
+services:
+  bgutil-provider:
+    image: brainicism/bgutil-ytdlp-pot-provider:0.8.5
+    container_name: bgutil-provider
+    ports:
+      - "4416:4416"
+    # If you need custom TTL, you can add:
+    # environment:
+    #   - TOKEN_TTL=6
+
+  yt-dlp-flask:
+    build: .
+    container_name: yt-dlp-flask
+    depends_on:
+      - bgutil-provider
+    ports:
+      - "5000:5000"
+    environment:
+      # ensure the provider container is reachable by service name
+      - GETPOT_BGUTIL_BASEURL=http://bgutil-provider:4416
