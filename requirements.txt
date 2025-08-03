@@ -1,5 +1,3 @@
 Flask==3.0.*
-yt-dlp>=2024.09.27
-yt-dlp-get-pot>=0.1.1
-bgutil-ytdlp-pot-provider>=0.8.5          # installs the provider plugin
+yt-dlp
 gunicorn>=21.2.0
