@@ -1,7 +1,9 @@
 FROM python:3.12-slim
 WORKDIR /app
 # system deps
-RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg \
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg curl ca-certificates unzip \
+    && update-ca-certificates \
+    && curl -fsSL https://deno.land/install.sh | DENO_INSTALL=/usr/local sh -s -- -q \
     && rm -rf /var/lib/apt/lists/*
 # python deps
 COPY requirements.txt .
